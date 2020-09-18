@@ -1,0 +1,37 @@
+    Controladores
+
+Métodos que son accedidos mediante la url del navegador.
+
+
+    Javascript & CSS Scaffolding
+
+https://laravel.com/docs/7.x/frontend
+composer require laravel/ui --dev
+
+    Composer.json
+
+Herramienta que nos permite agregar dependencias a un proyecto del servidor
+
+    Package.json
+
+Nos permite agregar dependencias para que otra cosa (npm, por ejemplo) agregar dependencias pero del lado del cliente (html, css, Javascript).
+
+    npm install
+
+Descarga las dependencias que se van a usar
+
+    npm run dev
+
+Genera archivos (css, js) dentro de public según las dependencias indicadas en el package.json
+
+    asset
+
+Llamar dependencias (archivos) que se encuentren dentro de la carpeta Public
+
+*** php artisan make:model NameModel
+
+    php artisan make:request StoreBlogPost
+
+ejemplo: MétodoQueEmpleaLaValidaación: Store
+         Modelo: Blog
+         TipoDePetición: Post
