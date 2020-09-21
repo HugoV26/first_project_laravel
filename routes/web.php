@@ -45,3 +45,5 @@ Route::get('home/{name?}/{last_name?}', function ($nombre = "Valki", $apellido =
 //Route::get('cualquiercosa', 'PostController@index');
 
 Route::resource('dashboard/post', 'dashboard\PostController');
+
+Route::resource('dashboard/category', 'dashboard\CategoryController');

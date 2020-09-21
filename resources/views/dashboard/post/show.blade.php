@@ -1,15 +1,11 @@
 @extends('dashboard.master')
 @section('content')
 
-    @csrf
+    
     <div class="form-group">
         <label for="title">Title</label>
         <input readonly class="form-control" type="text" name="title" id="title" value="{{ $post->title }}">
-        @error('title')
-            <small class="text-danger">
-                {{ $message }}
-            </small>
-        @enderror
+        
     </div>
     
     <div class="form-group">

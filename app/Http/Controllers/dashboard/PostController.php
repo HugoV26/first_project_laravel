@@ -18,7 +18,7 @@ class PostController extends Controller
     {
         //SELECT * FROM posts;
         //$posts = Post::orderBy('created_at', 'desc')->get();
-        $posts = Post::orderBy('created_at', 'desc')->paginate(1);
+        $posts = Post::orderBy('created_at', 'desc')->paginate(10);
         //echo "Controlador creado con la bandera -r";
         return view("dashboard.post.index", ['posts' => $posts]);
     }
@@ -62,7 +62,7 @@ class PostController extends Controller
 
         Post::create($request->validated());
 
-        return back()->with('status', 'Post creado con exito');
+        return back()->with('status', 'Post created successfully');
 
     }
 
@@ -102,7 +102,7 @@ class PostController extends Controller
     {
         $post->update($request->validated());
 
-        return back()->with('status', 'Post actualizado con exito');
+        return back()->with('status', 'Post updated successfully');
     }
 
     /**
@@ -111,8 +111,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return back()->with('status', 'Post deleted successfully');
     }
 }
