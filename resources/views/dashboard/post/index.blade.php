@@ -17,6 +17,9 @@
                     Posted
                 </td>
                 <td>
+                    Category
+                </td>
+                <td>
                     Date Created
                 </td>
                 <td>
@@ -33,6 +36,7 @@
                     <td>{{ $post->id}}</td>
                     <td>{{ $post->title}}</td>
                     <td>{{ $post->posted}}</td>
+                    <td>{{ $post->category->title}}</td>
                     <td>{{ $post->created_at->format('Y-M-d')}}</td>
                     <td>{{ $post->updated_at->format('Y-M-d')}}</td>
                     <td>

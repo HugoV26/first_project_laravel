@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,5 +46,8 @@ Route::get('home/{name?}/{last_name?}', function ($nombre = "Valki", $apellido =
 //Route::get('cualquiercosa', 'PostController@index');
 
 Route::resource('dashboard/post', 'dashboard\PostController');
+Route::post('dashboard/post/{post}/image', 'dashboard\PostController@image')->name('post.image');
 
 Route::resource('dashboard/category', 'dashboard\CategoryController');
+
+
