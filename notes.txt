@@ -35,3 +35,15 @@ Llamar dependencias (archivos) que se encuentren dentro de la carpeta Public
 ejemplo: MétodoQueEmpleaLaValidaación: Store
          Modelo: Blog
          TipoDePetición: Post
+
+    Middleware
+
+Todas las peticiones que realicemos hacia los controladores, primero van a pasar por los Middleware
+
+    Traits
+
+Mecanismos en las que podemos emplear Herencia
+
+    Seeders
+
+php artisan make:seeder NameTableSeeder

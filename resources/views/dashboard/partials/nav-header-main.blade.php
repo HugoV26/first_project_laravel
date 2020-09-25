@@ -13,6 +13,8 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="{{route('post.index')}}">Post</a>
             <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{{route('user.index')}}">User</a>
+            <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="{{route('category.index')}}">Category</a>
           </div>
         </li>
@@ -20,11 +22,15 @@
 
       <ul class="navbar-nav">
         <li class="nav-item">
-            <a href="" class="nav-link">Login <span class="sr-only"></span></a>
+            <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+              {{ __('Logout') }}
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+              @csrf
+            </form>
         </li>
-        <li class="nav-item">
-            <a href="" class="nav-link">Logout<span class="sr-only"></span></a>
-        </li>
+
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Profile
