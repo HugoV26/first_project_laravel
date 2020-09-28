@@ -31,6 +31,18 @@ class PostController extends ApiResponseController
         //return response()->json(array("data" => $post, "code" => 200, "msj" => ''), 200);
     }
 
+
+    
+    public function url_clean(String $url_clean)
+    {
+        $post = Post::where('url_clean', $url_clean)->firstOrFail();
+        $post->image;
+        $post->category;
+        //return response()->json($post);
+        return $this->successResponse($post);
+        //return response()->json(array("data" => $post, "code" => 200, "msj" => ''), 200);
+    }
+
     public function category(Category $category)
     {
         
