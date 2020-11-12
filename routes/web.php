@@ -14,10 +14,9 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
+
+/*
 Route::get('/test', function () {
     return "My first route";
 });
@@ -44,6 +43,7 @@ Route::get('home/{name?}/{last_name?}', function ($nombre = "Valki", $apellido =
 })->name("home");
 
 //Route::get('cualquiercosa', 'PostController@index');
+*/
 
 Route::resource('dashboard/post', 'dashboard\PostController');
 Route::post('dashboard/post/{post}/image', 'dashboard\PostController@image')->name('post.image');
@@ -51,6 +51,17 @@ Route::post('dashboard/post/{post}/image', 'dashboard\PostController@image')->na
 Route::resource('dashboard/category', 'dashboard\CategoryController');
 Route::resource('dashboard/user', 'dashboard\UserController');
 
+
+Route::get('/', 'web\WebController@index')->name('index');
+
+Route::get('/detail/{id}', 'web\WebController@detail');
+Route::get('/post-category/{id}', 'web\WebController@post_category');
+
+
+
+Route::get('/contact', [App\Http\Controllers\web\WebController::class, 'contact']);
+
+Route::get('/categories', [App\Http\Controllers\web\WebController::class, 'index']);
 
 
 Auth::routes();
