@@ -5,9 +5,11 @@ namespace App\Http\Controllers\dashboard;
 use App\Post;
 use App\Category;
 use App\PostImage;
+use App\Helpers\CustomUrl;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostPost;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -39,6 +41,9 @@ class PostController extends Controller
      */
     public function create()
     {
+        
+        //CustomUrl::hola_mundo();
+
         $categories = Category::pluck('id', 'title'); 
         return view("dashboard.post.create", ['post' => new Post(), 'categories' => $categories]);
         
@@ -50,7 +55,7 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePostPost $request)
+    public function store(/*Request*/ StorePostPost $request)
     {
         /*
         $request->validate([
@@ -59,21 +64,52 @@ class PostController extends Controller
             'content' => 'required|min:5'
         ]);   
         */ //Estas reglas las movemos a 'Requests/StorePostPost.php
-        echo 'Title: ' . $request->input('title');
+        
         //echo 'Title: ' . $request->title;
         
         //dd($request);
         //dd($request->all());
         
+        if($request->url_clean == ""){
+            $urlClean = CustomUrl::urlTitle(CustomUrl::convertAccentedCharacters($request->title), '-', true);
+        }else {
+            $urlClean = CustomUrl::urlTitle(CustomUrl::convertAccentedCharacters($request->url_clean), '-', true);
+            //$urlClean = $request->url_clean ;           
+        }
+
+        //Clonamos la data de nuestro input
+        $requestData = $request->validated();
+        $requestData['url_clean'] = $urlClean;
+
+        $validator = Validator::make($requestData, StorePostPost::myRules());
+
+        /*
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|unique:posts|max:255',
+            'body' => 'required'
+        ]);
+        */
+
+        
+
+        //$request->url_clean = $urlClean;
+
+        //echo 'Url_clean: ' . $urlClean;
+
+        //dd($request->validated());
+
+        Post::create($requestData);
 
         //Si utilizamos la siguiente forma, podríamos quitar 'use Illuminate\Http\Request;'
         //echo 'Title: ' . request("title")
 
-        Post::create($request->validated());
+        //Post::create($request->validated());
 
         return back()->with('status', 'Post created successfully');
 
     }
+
+    
 
     /**
      * Display the specified resource.
